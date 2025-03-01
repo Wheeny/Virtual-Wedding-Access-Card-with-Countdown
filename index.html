@@ -32,6 +32,12 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        #countdown {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #d63384;
+        }
     </style>
 </head>
 <body>
@@ -45,11 +51,33 @@
         <p>Join us to celebrate our love at:</p>
         <p><strong>Dominion City Lagos Headquarters Church</strong><br>Beside Lagos Business School, Alassia, Lekki-Epe Expressway, Lagos</p>
 
+        <p id="countdown"></p>
+
         <a class="btn" href="https://maps.app.goo.gl/bX8d3f59B9XAHxn5A?g_st=com.google.maps.preview.copy" target="_blank">View Venue on Google Maps</a>
         <a class="btn" href="https://forms.gle/2KLyJnHLykfNcw9D8" target="_blank">RSVP Now</a>
 
         <p>Please RSVP by <strong>Thursday, March 6, 2025</strong>.</p>
     </div>
 
+    <script>
+        function updateCountdown() {
+            const weddingDate = new Date("March 8, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs left!`;
+
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "The wedding has begun!";
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
