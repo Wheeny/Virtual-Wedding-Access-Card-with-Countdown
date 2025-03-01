@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #e91e63;
+        }
+        h2 {
+            color: #4caf50;
+        }
+        .countdown {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .rsvp {
+            background-color: #4caf50;
+        }
+        .maps {
+            background-color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image">
+        <img src="couple.jpg" alt="Couple">
+    </div>
+    <h1>You're Invited!</h1>
+    <h2>Join us as we celebrate love!</h2>
+    <p><strong>Venue:</strong> Dominion City Lagos Headquarters Church, beside Lagos Business School, Alassia, Lekki-Epe Expressway, Lagos.</p>
+    
+    <div class="countdown" id="countdown"></div>
+    
+    <a href="https://wa.me/?text=I'm%20attending%20the%20wedding!" class="btn rsvp">RSVP on WhatsApp</a>
+    <a href="https://goo.gl/maps/LnkBtFXRNeJeDPxx9" target="_blank" class="btn maps">View Venue on Google Maps</a>
+</div>
+
+<script>
+    function countdownTimer() {
+        var weddingDate = new Date("2024-12-20T00:00:00").getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = weddingDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " 
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "The wedding has started!";
+            }
+        }, 1000);
+    }
+    countdownTimer();
+</script>
+
+</body>
+</html>
