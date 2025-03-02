@@ -11,7 +11,42 @@
             background-color: #fff5f8;
             color: #333;
         }
-        .container {
+        .envelope-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 50px;
+        }
+        .envelope {
+            width: 200px;
+            height: 120px;
+            background-color: #ff69b4;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+        }
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #d14786;
+            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+            transition: transform 0.5s;
+        }
+        .open .flap {
+            transform: rotateX(180deg);
+        }
+        .invite-container {
+            display: none;
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
@@ -50,8 +85,15 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1 style="color: #ff69b4;">You’re Invited!</h1>
+    <div class="envelope-container" onclick="openInvite()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <span style="position: relative; z-index: 1;">You're Invited!</span>
+        </div>
+    </div>
+
+    <div class="invite-container" id="invite">
+        <h1 style="color: #ff69b4;">You're Invited/Reminded</h1>
         <h2 style="color: #008000;">Kennedy Nnaji & Patra Ahanon</h2>
         <p>Are getting married on <strong>Saturday, March 8, 2025</strong>!</p>
         
@@ -68,9 +110,15 @@
         <p>Please RSVP by <strong>Thursday, March 6, 2025</strong>.</p>
 
         <p class="invite-note">This invite admits one.</p>
+        <p>For inquiries, contact: 08146307431 or 08065981613</p>
     </div>
 
     <script>
+        function openInvite() {
+            document.querySelector(".envelope-container").style.display = "none";
+            document.getElementById("invite").style.display = "block";
+        }
+
         function updateCountdown() {
             const weddingDate = new Date("March 8, 2025 00:00:00").getTime();
             const now = new Date().getTime();
